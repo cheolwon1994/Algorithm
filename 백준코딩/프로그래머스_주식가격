@@ -1,0 +1,33 @@
+#include <string>
+#include <vector>
+#include <stack>
+using namespace std;
+int arr[100000];
+
+vector<int> solution(vector<int> prices) {
+    vector<int> answer;
+    int len = prices.size()-1;
+    stack<int> s;
+    
+    for(int i=0;i<=len;i++){
+        int val = prices[i];
+        while(!s.empty()){
+            int cidx = s.top();
+            int cv = prices[cidx];
+            if(cv<=val)   break;
+            else{
+                arr[cidx] = i-cidx;
+                s.pop();
+            }
+        }
+        s.push(i);
+    }
+    while(!s.empty()){
+        int cidx = s.top();
+        s.pop();
+        arr[cidx]=len-cidx;
+    }
+    for(int i=0;i<=len;i++)
+        answer.push_back(arr[i]);
+    return answer;
+}
