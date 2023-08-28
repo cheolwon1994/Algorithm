@@ -15,7 +15,7 @@ int oper[20];		//* : 42, +: 43, -: 45
 long long maximum = -9876543210;
 int op_idx = 0;
 int n_idx = 0;
-//(num+1)/4 : ÃÖ´ë °ıÈ£ °³¼ö
+//(num+1)/4 : ìµœëŒ€ ê´„í˜¸ ê°œìˆ˜
 
 int cal(int n1, int n2, int op) {
 	if (op == 42)
@@ -31,11 +31,11 @@ void dfs(int idx, long long sum) {
 		maximum = max(maximum, sum);
 		return;
 	}
-	//¼øÂ÷ÀûÀ¸·Î °¡´Â °æ¿ì
+	//ìˆœì°¨ì ìœ¼ë¡œ ê°€ëŠ” ê²½ìš°
 	int tmp = cal(sum,arr[idx+1],oper[idx]);
 	dfs(idx + 1, tmp);
 
-	//µÚÂÊ¿¡ °ıÈ£´Â ³Ö´Â °æ¿ì
+	//ë’¤ìª½ì— ê´„í˜¸ëŠ” ë„£ëŠ” ê²½ìš°
 	if (idx + 1 != op_idx) {
 		int jump = cal(arr[idx + 1], arr[idx + 2], oper[idx + 1]);
 		jump = cal(sum, jump, oper[idx]);
